@@ -1,0 +1,204 @@
+* {
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+html {
+    font-size: 62.5%;
+}
+
+body {
+    height: 100vh;
+    font: 1.6rem Helvetica, Arial;
+    margin: 0;
+}
+
+a {
+    color: black;
+    text-decoration: none;
+}
+
+a:hover {
+    color: gray;
+    transition: all 1s;
+}
+
+button {
+    font: 1.6rem helvetica;
+    padding: 1rem;
+    border: 0.1rem black solid;
+    border-radius: 0.5rem;
+    cursor: pointer;
+}
+
+button:hover{
+    border-color: gray;
+    background-color: gray;
+    color: white;
+    transition: all 1s;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.success {
+    color: green;
+}
+
+.error {
+    color: red;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        "header"
+        "main"
+        "footer";
+        grid-template-columns: 1fr;
+        grid-template-rows: 5rem 1fr 5rem;
+        height: 100%;
+}
+
+header {
+    grid-area: "header";
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+}
+
+main {
+    grid-area: "main";
+}
+
+footer {
+    grid-area: "footer";
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+header a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.brand a {
+    font-size: 3rem;
+}
+
+/* Список товаров */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    justify-content: center;
+}
+
+.products li {
+    flex: 0 1 30rem;
+    margin: 1rem;
+    margin-bottom: 0;
+    height: 42rem;
+    border: 0.2rem black solid;
+}
+
+.product {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    height: 100%;
+}
+
+.product img {
+    height: 26rem;
+    width: 22rem;
+    overflow: hidden;
+    vertical-align: middle;
+    object-fit: cover;
+    margin-top: 2rem;
+}
+
+.product-name {
+    line-height: 2.2rem;
+}
+
+.product-brand {
+    font-size: 1.2rem;
+    color: gray;
+}
+
+.product-price {
+    font-size: 2rem;
+}
+
+.rating {
+    color: gray;
+    font-size: 1.8rem;
+}
+
+.rating span:last-child {
+    color: black;
+    font-size: 1.4rem;
+}
+
+/*Details*/
+
+.content {
+    padding: 1rem;
+}
+
+.details {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.details-image {
+    flex: 2 1 60rem;
+}
+
+.details-image img {
+    max-height: 60rem;
+    width: 100%;
+    overflow: hidden;
+    vertical-align: middle;
+    object-fit: cover;
+    margin-top: 2rem;
+}
+
+.details-info, .details-action {
+    flex: 1 1 30rem;
+}
+
+.details-info ul, .details-action ul {
+    padding: 0;
+}
+
+.details-info h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+.details-info li, .details-action li {
+    margin-bottom: 1rem;
+}
+
+.details-action {
+    border: 0.1rem black solid;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+}
