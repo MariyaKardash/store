@@ -202,3 +202,76 @@ header a {
     border-radius: 0.5rem;
     padding: 0.5rem;
 }
+
+
+/*Cart*/
+
+.cart {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+}
+
+.cart-list {
+    flex: 3 1 60rem;
+}
+
+.cart-action {
+    margin-top: 10rem;
+    flex: 1 1 20rem;
+    border: 0.1rem black solid;
+    padding: 1rem;
+    border-radius: 0.5rem;
+}
+
+.cart-list-container {
+    padding: 1rem;
+}
+
+.cart-list-container li {
+    border: 0.1rem black solid;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+.cart-list-container li:first-child {
+    align-items: flex-end;
+    border: none;
+    padding: 0;
+}
+
+.cart-list-container img {
+    width: 10rem;
+    height: 10rem;
+    overflow: hidden;
+    vertical-align: middle;
+    object-fit: cover;
+}
+
+.cart-image {
+    flex: 1 1;
+}
+
+.cart-name {
+    flex: 8 1;
+}
+
+.cart-price {
+    flex: 1 1;
+    text-align: right;
+}
+
+.cart-name > div {
+    padding: 1rem;
+}
+
+.cart-list h3 {
+    margin: 0;
+}
+
+.cart-list button, .cart-list select {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+}
