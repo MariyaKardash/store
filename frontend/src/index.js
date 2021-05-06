@@ -1,3 +1,4 @@
+import Header from "./components/header.js";
 import CartScreen from "./screens/CartScreen.js";
 import ErrorScreen from "./screens/ErrorScreen.js";
 import HomeScreen from "./screens/HomeScreen.js";
@@ -21,9 +22,12 @@ const router = async () => {
     (request.verb ? `/${request.verb}` : "");
     const screen = routes[parseUrl] ? routes[parseUrl] : ErrorScreen;
 
-  const main = document.getElementById("main_container");
-  main.innerHTML = await screen.render();
-  if (screen.after_render) await screen.after_render();
+    const header = document.getElementById('header-container');
+    header.innerHTML = await Header.render();
+    await Header.after_render();
+    const main = document.getElementById("main_container");
+    main.innerHTML = await screen.render();
+    if (screen.after_render) await screen.after_render();
 };
 
 window.addEventListener("load", router);
