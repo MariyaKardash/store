@@ -1,13 +1,14 @@
-import { signin } from "../api";
+import { register } from "../api";
 import { getUserInfo, setUserInfo } from "../localStorage";
 import { hideLoading, showLoading, showMessage } from "../utils";
 
-const SigninScreen = {
+const RegisterScreen = {
     after_render: () => {
-        document.getElementById("signin-form").addEventListener('submit', async (e) => {
+        document.getElementById("register-form").addEventListener('submit', async (e) => {
             e.preventDefault();
             showLoading();
-            const data = await signin({
+            const data = await register({
+                name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 password: document.getElementById('password').value,
             });
@@ -26,10 +27,14 @@ const SigninScreen = {
         }
         return `
         <div class="form-container">
-            <form id="signin-form">
+            <form id="register-form">
                 <ul class="form-items">
                     <li>
-                        <h1>Вход в систему</h1>
+                        <h1>Регистрация</h1>
+                    </li>
+                    <li>
+                        <label for="name">Имя</label>
+                        <input type="name" name="name" id="name"/>
                     </li>
                     <li>
                         <label for="email">Email</label>
@@ -39,13 +44,17 @@ const SigninScreen = {
                         <label for="password">Пароль</label>
                         <input type="password" name="password" id="password"/>
                     </li>
+                    <li>
+                        <label for="repassword">Введите пароль ещё раз</label>
+                        <input type="password" name="repassword" id="repassword"/>
+                    </li>
                     <li> 
-                        <button type="submit" class="to-cart">Войти</button>
+                        <button type="submit" class="to-cart">Зарегистрироваться</button>
                     </li>
                     <li>
                         <div>
-                            Ещё не зарегистрированы?
-                            <a href="/#/register">Зарегистрироваться.</a>
+                            Уже есть аккаунт?
+                            <a href="/#/signin">Войти.</a>
                         </div>
                     </li>
                 </ul>
@@ -55,4 +64,4 @@ const SigninScreen = {
     }
 }
 
-export default SigninScreen;
+export default RegisterScreen;
