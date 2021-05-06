@@ -67,4 +67,27 @@ userRouter.post('/register',expressAsyncHandler(async (req, res) => {
 })
 );
 
+userRouter.put('/:id',expressAsyncHandler(async (req, res) => {
+    const user = await User.findById(req.params.id);
+    
+    if(!user) {
+        res.status(404).send({
+            message: 'Пользователь не найден!',
+        });
+    } else {
+        user.name = req.body.name || user.name;
+        user.email = req.body.email || user.email;
+        user.password = req.body.password || user.password;
+        const updatedUser = await user.save();
+        res.send({
+            _id: updatedUser._id,
+            name: updatedUser.name,
+            email: updatedUser.email,
+            isAdmin: updatedUser.isAdmin,
+            token: generateToken(updatedUser),
+        })
+    }
+})
+);
+
 export default userRouter;
