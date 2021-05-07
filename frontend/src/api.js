@@ -28,7 +28,7 @@ export const signin = async({email, password}) => {
         const response = await axios ({
             url: `${apiUrl}/api/users/signin`,
             method: 'POST',
-            header: {
+            headers: {
                 'Content-Type': 'application/json',
             },
             data: { 
@@ -51,7 +51,7 @@ export const register = async({name, email, password}) => {
         const response = await axios ({
             url: `${apiUrl}/api/users/register`,
             method: 'POST',
-            header: {
+            headers: {
                 'Content-Type': 'application/json',
             },
             data: { 
