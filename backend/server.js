@@ -4,6 +4,7 @@ import data from './data';
 import mongoose from 'mongoose';
 import bodyParser from 'body-parser';
 import userRouter from './routers/userRouter';
+import orderRouter from './routers/orderRouter';
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.get('/api/products', (req, res) => {
 });
 
 app.use('/api/users', userRouter);
+app.use('/api/orders', orderRouter);
 
 app.get('/api/products/:id', (req, res) => {
   const product = data.products.find(x => x._id === req.params.id);

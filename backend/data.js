@@ -1,7 +1,7 @@
 module.exports = {
   products: [
     {
-      _id: '1',
+      _id: '111111111111111111111111',
       name: 'Телефон 1',
       category: 'Телефоны',
       image: '/images/product-1.jpg',
@@ -12,7 +12,7 @@ module.exports = {
       countInStock: 0,
     },
     {
-      _id: '2',
+      _id: '222222222222222222222222',
       name: 'Ноутбук 1',
       category: 'Ноутбуки',
       image: '/images/product-1.jpg',
@@ -23,7 +23,7 @@ module.exports = {
       countInStock: 4,
     },
     {
-      _id: '3',
+      _id: '333333333333333333333333',
       name: 'Телефон 2',
       category: 'Телефоны',
       image: '/images/product-1.jpg',
@@ -34,7 +34,7 @@ module.exports = {
       countInStock: 10,
     },
     {
-      _id: '4',
+      _id: '444444444444444444444444',
       name: 'Ноутбук 2',
       category: 'Ноутбуки',
       image: '/images/product-1.jpg',
@@ -45,7 +45,7 @@ module.exports = {
       countInStock: 6,
     },
     {
-      _id: '5',
+      _id: '555555555555555555555555',
       name: 'Телефон 3',
       category: 'Телефоны',
       image: '/images/product-1.jpg',

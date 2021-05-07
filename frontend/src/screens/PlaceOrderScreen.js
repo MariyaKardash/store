@@ -1,5 +1,7 @@
+import { createOrder } from "../api";
 import CheckoutSteps from "../components/checkoutSteps";
-import { getCartItems, getPayment, getShipping } from "../localStorage"
+import { cleanCart, getCartItems, getPayment, getShipping } from "../localStorage"
+import { hideLoading, showLoading, showMessage } from "../utils";
 
 const convertCartToOrder = () => {
     const orderItems = getCartItems();
@@ -27,8 +29,20 @@ const convertCartToOrder = () => {
 }
 
 const PlaceOrderScreen = {
-    after_render: () => {
-
+    after_render: async () => {
+        document.getElementById('placeorder-button').addEventListener('click', async () => {
+            const order = convertCartToOrder();
+        showLoading();
+        const data = await createOrder(order);
+        hideLoading();
+        if(data.error) {
+            showMessage(data.error);
+        } else {
+            cleanCart();
+            document.location.hash = '/order/' + data.order._id;
+        }
+        })
+        
     },
     render: () => {
         const {orderItems, shipping, payment, itemsPrice, shippingPrice, taxPrice, totalPrice} = convertCartToOrder();
@@ -81,7 +95,7 @@ const PlaceOrderScreen = {
                         <li><div>Доставка</div><div>$${shippingPrice}</div></li>
                         <li><div>Налог</div><div>$${taxPrice}</div></li>
                         <li class="total"><div>Итог</div><div>$${totalPrice}</div></li>
-                        <li> <button class="to-cart full-width"> Оформить заказ </button> </li>
+                        <li> <button id="placeorder-button" class="to-cart full-width"> Оформить заказ </button> </li>
                 </div>
             </div>
         </div>
