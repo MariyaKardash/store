@@ -453,3 +453,47 @@ td{
     padding: 0.5rem;
     border: 0.1rem black solid;
 }
+
+/*Manage*/
+
+.manage {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100%;
+}
+
+.manage h1 {
+    font-size: 3rem;
+    margin: 1rem 0;
+}
+
+.manage-menu {
+    flex: 1 1 20rem;
+    border-right: 0.1rem black solid;
+}
+
+.manage-menu ul {
+    padding: 0;
+}
+.manage-menu a {
+    display: flex;
+    padding: 1rem;
+    padding-left: 2rem;
+    justify-content: space-between;
+}
+
+.manage-menu li.selected a{
+    background-color: #e0e0e0;
+    color: blue;
+}
+
+.manage-menu a:hover {
+    transition: 0.5s;
+    background-color: #f0f0f0;
+    color: blue
+}
+
+.manage-content {
+    flex: 4 1 80rem;
+    padding: 1rem;
+}
