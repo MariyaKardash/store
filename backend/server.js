@@ -2,14 +2,13 @@ import express from 'express';
 import cors from 'cors';
 import data from './data';
 import mongoose from 'mongoose';
-import bodyParser from 'body-parser';
 import userRouter from './routers/userRouter';
 import orderRouter from './routers/orderRouter';
 
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(express.json());
 app.get('/api/products', (req, res) => {
   res.send(data.products);
 });
