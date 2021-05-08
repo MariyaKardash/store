@@ -219,7 +219,7 @@ export const getOrders = async () => {
       return { error: err.response.data.message || err.message };
     }
   };
-  
+
   export const deleteOrder = async (orderId) => {
     try {
       const { token } = getUserInfo();
@@ -278,3 +278,23 @@ export const getMyOrders = async () => {
         return{ error: err.response ? err.response.data.message : err.message};
     }
 }
+
+export const getSummary = async () => {
+    try {
+      const { token } = getUserInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/orders/summary`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'content-type': 'application/json',
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      } else {
+        return response.data;
+      }
+    } catch (err) {
+      return { error: err.response ? err.response.data.message : err.message };
+    }
+  };
