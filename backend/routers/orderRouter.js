@@ -5,6 +5,21 @@ import { isAuth } from '../utils';
 
 const orderRouter = express.Router();
 
+orderRouter.get('/', isAuth, expressAsyncHandler(async(req, res) => {
+  const orders = await Order.find({}).populate('user');
+  res.send(orders);
+}))
+
+orderRouter.delete('/:id', isAuth, expressAsyncHandler(async(req,res) => {
+  const order = await Order.findById(req.params.id);
+  if(order) {
+    const deletedOrder = await order.remove();
+    res.send({message:'Заказ был успешно удалён!', product:deletedOrder});
+  } else {
+    res.status(404).send({message:'Заказ не найден!'})
+  }
+}));
+
 orderRouter.get('/mine', isAuth, expressAsyncHandler(async (req,res) => {
     const orders = await Order.find({user: req.user._id});
     res.send(orders);
