@@ -1,8 +1,13 @@
-import { getProducts } from '../api';
+import { createProduct, getProducts } from '../api';
 import ManageMenu from '../components/manageMenu';
 
 const ProductListScreen = {
-    after_render: () => {},
+    after_render: () => {
+        document.getElementById('create-product-button').addEventListener('click', async() => {
+            const data = await createProduct();
+            document.location.hash = `/product/${data.product._id}/edit`;
+        })
+    },
     render: async () => {
         const products = await getProducts();
         return `
