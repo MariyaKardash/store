@@ -23,10 +23,10 @@ productRouter.get(
 
 productRouter.post('/', isAuth, expressAsyncHandler(async (req,res) => {
     const product = new Product({
-        name: 'Бла-бла',
-        description: 'Здесь будет описание',
-        category: 'Категория1',
-        brand: 'Найк',
+        name: 'Название',
+        description: 'Описание',
+        category: 'Категория',
+        brand: 'Фирма-изготовитель',
         image: 'https://st2.depositphotos.com/3489481/5208/i/600/depositphotos_52086275-stock-photo-book-of-life.jpg',
     })
     const createdProduct = await product.save();
@@ -38,5 +38,27 @@ productRouter.post('/', isAuth, expressAsyncHandler(async (req,res) => {
         res.status(500).send({ message: 'Произошла ошибка, попробуйте снова!' });
       }
 }))
+
+productRouter.put('/:id', isAuth, expressAsyncHandler(async(req,res)=> {
+  const productId = req.params.id;
+  const product = await Product.findById(productId);
+  if(product) {
+    product.name = req.body.name;
+      product.price = req.body.price;
+      product.image = req.body.image;
+      product.brand = req.body.brand;
+      product.category = req.body.category;
+      product.countInStock = req.body.countInStock;
+      product.description = req.body.description;
+      const updatedProduct = await product.save();
+      if(updatedProduct) {
+        res.send({message: 'Товар изменён', product: updatedProduct});
+      } else {
+        res.status(500).send({message: 'Произошла ошибка в обновлении товара'});
+      }
+     } else {
+        res.status(404).send({message: 'Товар не найден!'});
+      }
+  }))
 
 export default productRouter;
