@@ -227,8 +227,8 @@ export const getOrders = async () => {
         url: `${apiUrl}/api/orders/${orderId}`,
         method: 'DELETE',
         headers: {
-            'Content-Type': 'application/json',
-        Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
       },
     });
     if (response.statusText !== 'OK') {

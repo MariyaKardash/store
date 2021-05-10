@@ -1,8 +1,25 @@
-import { getOrders } from "../api"
+import { deleteOrder, getOrders } from "../api"
 import ManageMenu from "../components/manageMenu";
+import { hideLoading, rerender, showLoading, showMessage } from "../utils";
 
 const OrderListScreen = {
-    after_render: () => {},
+    after_render: () => {
+        const deleteButtons = document.getElementsByClassName('delete-order-button');
+        Array.from(deleteButtons).forEach((deleteButton) => {
+        deleteButton.addEventListener('click', async () => {
+        if (confirm('Вы уверены, что хотите удалить данный заказ?')) {
+          showLoading();
+          const data = await deleteOrder(deleteButton.id);
+          if (data.error) {
+            showMessage(data.error);
+          } else {
+            rerender(OrderListScreen);
+          }
+          hideLoading();
+        }
+      });
+    });
+    },
     render: async () => {
         const orders = await getOrders();
         return `
@@ -36,7 +53,7 @@ const OrderListScreen = {
                                     <td>${order.deliveredAt || 'Нет'}</td>
                                     <td>
                                         <button id="${order._id}" class="edit-button to-cart">Изменить</button>
-                                        <button id="${order._id}" class="delete-button to-cart">Удалить</button>
+                                        <button id="${order._id}" class="delete-order-button to-cart">Удалить</button>
                                         <a href="/#/order/${order._id}"><button class="to-cart">Перейти к заказу</button></a>
                                     </td>
                                 </tr>
