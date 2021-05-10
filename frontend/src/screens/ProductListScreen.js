@@ -62,8 +62,8 @@ const ProductListScreen = {
                                 <td>${product.category}</td>
                                 <td>${product.brand}</td>
                                 <td>
-                                    <button id='${product._id}' class='edit-button'>Изменить</button>
-                                    <button id='${product._id}' class='delete-button'>Удалить</button>
+                                    <button id='${product._id}' class='edit-button to-cart'>Изменить</button>
+                                    <button id='${product._id}' class='delete-button to-cart'>Удалить</button>
                                 </td>
                             </tr>
                             `).join('\n') }

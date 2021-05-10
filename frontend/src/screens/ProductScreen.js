@@ -20,7 +20,7 @@ const ProductScreen = {
     return `
         <div class="content">
             <div class="return-in-menu">
-                <a href='/#/'>Вернуться</a>
+                <a href='/#/'><i class="fas fa-angle-double-left"></i></a>
             </div>
             <div class='details'> 
                 <div class='details-image'>
@@ -36,10 +36,6 @@ const ProductScreen = {
                               value: product.rating,
                               text: `${product.numReviews} отзывов`,
                             })}
-                        </li>
-                        <li>
-                            Цена: <strong>$${product.price}</strong>
-                        </li>
                         <li> 
                             Описание: 
                             <div>
@@ -47,23 +43,22 @@ const ProductScreen = {
                             </div>
                         </li>
                     </ul>
-                </div>
                 <div class="details-action">
                     <ul>
                         <li>
-                            Цена: $${product.price}
+                            $${product.price}
                         </li>
                         <li>
-                            Статус: 
                             ${
                               product.countInStock > 0
-                                ? `<span class='success'>В наличии</span>`
-                                : `<span class='error'>Отсутствует</span>`
+                                ? `<span class='success'>Есть в наличии</span>`
+                                : `<span class='error'>Отсутствует на складе</span>`
                             }
                         </li>
                         <li>
                             <button id="add-button" class="full-width to-cart">Добавить в корзину </button>
                     </ul>
+                </div>
                 </div>
             </div>
         </div>`;

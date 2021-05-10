@@ -32,7 +32,7 @@ const ProductEditScreen = {
         return `
         <div class="content">
             <div>
-                <a href="/#/productlist">Вернуться на главную страницу</a>
+                <a href="/#/productlist"><i class="fas fa-angle-double-left"></i></a>
             </div>
             <div class="form-container">
                 <form id='edit-product-form'>

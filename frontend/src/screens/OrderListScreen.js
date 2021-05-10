@@ -33,8 +33,8 @@ const OrderListScreen = {
                                     <td>${order.paidAt || 'Нет'}</td>
                                     <td>${order.deliveredAt || 'Нет'}</td>
                                     <td>
-                                        <button id="${order._id}" class="edit-button">Изменить</button>
-                                        <button id="${order._id}" class="delete-button">Удалить</button>
+                                        <button id="${order._id}" class="edit-button to-cart">Изменить</button>
+                                        <button id="${order._id}" class="delete-button to-cart">Удалить</button>
                                     </td>
                                 </tr>
                             `).join('\n')

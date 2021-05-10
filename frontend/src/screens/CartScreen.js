@@ -94,7 +94,7 @@ const CartScreen = {
                           : `<option  value="${x + 1}">${x + 1}</option>`
                       )}  
                       </select>
-                      <button type="button" class="delete-button" id="${
+                      <button type="button" class="delete-button to-cart" id="${
                         item.product
                       }">
                         Удалить

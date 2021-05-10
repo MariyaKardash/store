@@ -9,6 +9,7 @@ const HomeScreen = {
     }
 
     return `
+
       <ul class='products'>
         ${products
     .map(
@@ -19,7 +20,7 @@ const HomeScreen = {
               <img src='${product.image}' alt='${product.name}' />
             </a>
           <div class='product-name'>
-            <a href='/#/product/1'>
+            <a href='/#/product/${product._id}'>
               ${product.name}
             </a>
           </div>
