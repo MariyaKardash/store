@@ -4,6 +4,9 @@ const Header = {
   render: () => {
     const { name, isAdmin } = getUserInfo();
     return `
+            <div class='bar-menu'>
+              <a><i class="fas fa-bars"></i></a>
+            </div>
             <div class="brand">
                 <a href="/#/">Shop</a>
             </div>

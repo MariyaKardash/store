@@ -52,7 +52,6 @@ const OrderListScreen = {
                                     <td>${order.paidAt || 'Нет'}</td>
                                     <td>${order.deliveredAt || 'Нет'}</td>
                                     <td>
-                                        <button id="${order._id}" class="edit-button to-cart">Изменить</button>
                                         <button id="${order._id}" class="delete-order-button to-cart">Удалить</button>
                                         <a href="/#/order/${order._id}"><button class="to-cart">Перейти к заказу</button></a>
                                     </td>

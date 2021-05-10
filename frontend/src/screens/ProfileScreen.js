@@ -85,7 +85,7 @@ const ProfileScreen = {
                                 <td>${Math.round(order.totalPrice)}</td>
                                 <td>${order.paidAt || 'Нет'}</td>
                                 <td>${order.deliveredAt || 'Нет'}</td>
-                                <td><a href='/#/order/${order._id}'>К заказу</a></td>
+                                <td><a href='/#/order/${order._id}'><button class='to-cart'>Перейти к заказу</button></a></td>
                             </tr>
                         `
                     ).join('\n')
