@@ -654,3 +654,14 @@ td {
   font-size: 2rem;
   cursor: pointer;
 }
+
+/*Search*/
+.search-input {
+  height: 3rem;
+  margin-right: 1rem;
+}
+
+.header-ref {
+  display: flex;
+  align-items: center;
+}

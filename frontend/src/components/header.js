@@ -32,7 +32,9 @@ const Header = {
             <div class="brand">
                 <a href="/#/">Shop</a>
             </div>
-            <div>
+            <div class="header-ref">
+            <input class="search-input" id="search"/>
+            <a><i class="fas fa-search"></i></a>
             ${
               name
                 ? `<a href = '/#/profile'>${name}</a>`
