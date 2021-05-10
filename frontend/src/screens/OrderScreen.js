@@ -1,9 +1,20 @@
-import { getOrder } from "../api";
-import { parseRequestURL } from "../utils";
+import { deliverOrder, getOrder } from "../api";
+import { getUserInfo } from "../localStorage";
+import { hideLoading, parseRequestURL, rerender, showLoading, showMessage } from "../utils";
 
 const OrderScreen = {
-    after_render: async () => { },
+    after_render: async () => { 
+        const request = parseRequestURL();
+        document.getElementById('deliver-order-button').addEventListener('click', async() => {
+            showLoading();
+            await deliverOrder(request.id);
+            hideLoading();
+            showMessage('Заказ отправлен!');
+            rerender(OrderScreen);
+        })
+    },
     render: async () => {
+        const { isAdmin } = getUserInfo();
         const request = parseRequestURL();
         const {_id, shipping, payment,orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice, isDelivered, deliveredAt, isPaid, paidAt} = await getOrder(request.id);
         return `
@@ -59,6 +70,13 @@ const OrderScreen = {
                         <li><div>Доставка</div><div>$${shippingPrice}</div></li>
                         <li><div>Налог</div><div>$${taxPrice}</div></li>
                         <li class="total"><div>Итог</div><div>$${totalPrice}</div></li>
+                        <li>
+                        ${!isPaid ? `<button class='full-width to-cart'>Оплатить</button>` : ''}
+                        </li>
+                        <li>
+                        ${!isDelivered && isAdmin ? `<button id="deliver-order-button" class='full-width to-cart'>Доставить</button>` : ''}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

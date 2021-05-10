@@ -35,6 +35,7 @@ const OrderListScreen = {
                                     <td>
                                         <button id="${order._id}" class="edit-button to-cart">Изменить</button>
                                         <button id="${order._id}" class="delete-button to-cart">Удалить</button>
+                                        <a href="/#/order/${order._id}"><button class="to-cart">Перейти к заказу</button></a>
                                     </td>
                                 </tr>
                             `).join('\n')

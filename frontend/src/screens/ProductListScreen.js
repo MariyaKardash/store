@@ -64,6 +64,7 @@ const ProductListScreen = {
                                 <td>
                                     <button id='${product._id}' class='edit-button to-cart'>Изменить</button>
                                     <button id='${product._id}' class='delete-button to-cart'>Удалить</button>
+                                    <a href="/#/product/${product._id}"><button class="to-cart">Перейти к товару</button></a>
                                 </td>
                             </tr>
                             `).join('\n') }

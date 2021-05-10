@@ -98,4 +98,41 @@ orderRouter.post(
   })
 );
 
+orderRouter.put(
+  '/:id/deliver',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isDelivered = true;
+      order.deliveredAt = Date.now();
+      const updatedOrder = await order.save();
+      res.send({ message: 'Заказ доставлен', order: updatedOrder });
+    } else {
+      res.status(404).send({ message: 'Заказ не был найден' });
+    }
+  })
+);
+
+orderRouter.put(
+  '/:id/pay',
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      order.isPaid = true;
+      order.paidAt = Date.now();
+      order.payment.paymentResult = {
+        payerID: req.body.payerID,
+        paymentID: req.body.paymentID,
+        orderID: req.body.orderID,
+      };
+      const updatedOrder = await order.save();
+      res.send({ message: 'Заказ оплачен', order: updatedOrder });
+    } else {
+      res.status(404).send({ message: 'Заказ не был найден' });
+    }
+  })
+);
+
 export default orderRouter;
