@@ -1,22 +1,37 @@
-import { deliverOrder, getOrder } from "../api";
+import { deliverOrder, getOrder, paidOrder } from "../api";
 import { getUserInfo } from "../localStorage";
 import { hideLoading, parseRequestURL, rerender, showLoading, showMessage } from "../utils";
 
 const OrderScreen = {
     after_render: async () => { 
         const request = parseRequestURL();
-        document.getElementById('deliver-order-button').addEventListener('click', async() => {
+        if(document.getElementById('paid-button')) {
+            document.getElementById('paid-button').addEventListener('click', async() => {
+            showLoading();
+            await paidOrder(request.id);
+            hideLoading();
+            showMessage('Заказ оплачен!');
+            rerender(OrderScreen);
+            })
+        };
+        if(document.getElementById('deliver-order-button')) {
+            document.getElementById('deliver-order-button').addEventListener('click', async() => {
             showLoading();
             await deliverOrder(request.id);
             hideLoading();
             showMessage('Заказ отправлен!');
             rerender(OrderScreen);
         })
+        }
     },
     render: async () => {
+        let isCart = false;
+        let isCash = false;
+        
         const { isAdmin } = getUserInfo();
         const request = parseRequestURL();
         const {_id, shipping, payment,orderItems, itemsPrice, shippingPrice, taxPrice, totalPrice, isDelivered, deliveredAt, isPaid, paidAt} = await getOrder(request.id);
+        payment.paymentMethod === 'Наличными' ? isCash = true : isCart = true;
         return `
         <div>
         <h1>Заказ №${_id}</h1>
@@ -71,10 +86,13 @@ const OrderScreen = {
                         <li><div>Налог</div><div>$${taxPrice}</div></li>
                         <li class="total"><div>Итог</div><div>$${totalPrice}</div></li>
                         <li>
-                        ${!isPaid ? `<button class='full-width to-cart'>Оплатить</button>` : ''}
+                        ${!isPaid && isCart ? `<button id="pay-order-button" class='full-width to-cart'>Оплатить</button>` : ''}
                         </li>
                         <li>
-                        ${!isDelivered && isAdmin ? `<button id="deliver-order-button" class='full-width to-cart'>Доставить</button>` : ''}
+                        ${!isPaid && isDelivered  && isCash && isAdmin ? `<button id="paid-button" class='full-width to-cart'>Оплачено</button>` : ''}
+                        </li>
+                        <li>
+                        ${!isDelivered && (isPaid || isCash) && isAdmin ? `<button id="deliver-order-button" class='full-width to-cart'>Доставить</button>` : ''}
                         </li>
                     </ul>
                 </div>

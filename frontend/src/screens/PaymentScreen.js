@@ -25,13 +25,13 @@ const PaymentScreen = {
                     </li>
                     <li>
                         <div>
-                            <input type="radio" name="payment-method" id="paypal" value="Paypal" checked/>
-                            <label for="paypal">Paypal</label>
+                            <input type="radio" name="payment-method" id="paypal" value="Картой" checked/>
+                            <label for="paypal">Картой</label>
                         </div>
                     </li>
                     <li>
                         <div>
-                            <input type="radio" name="payment-method" id="stripe" value="Stripe"/>
+                            <input type="radio" name="payment-method" id="stripe" value="Наличными"/>
                             <label for="stripe">Наличными при получении</label>
                         </div>
                     </li>

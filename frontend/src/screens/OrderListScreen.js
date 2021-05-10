@@ -14,9 +14,10 @@ const OrderListScreen = {
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>№</th>
                                 <th>Дата</th>
                                 <th>Цена</th>
+                                <th>Способ оплаты</th>
                                 <th>Пользователь</th>
                                 <th>Оплачено</th>
                                 <th>Доставлено</th>
@@ -29,6 +30,7 @@ const OrderListScreen = {
                                     <td>${order._id}</td>
                                     <td>${order.createdAt}</td>
                                     <td>${order.totalPrice}</td>
+                                    <td>${order.payment.paymentMethod}</td>
                                     <td>${order.user.name}</td>
                                     <td>${order.paidAt || 'Нет'}</td>
                                     <td>${order.deliveredAt || 'Нет'}</td>

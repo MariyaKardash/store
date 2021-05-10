@@ -122,11 +122,6 @@ orderRouter.put(
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();
-      order.payment.paymentResult = {
-        payerID: req.body.payerID,
-        paymentID: req.body.paymentID,
-        orderID: req.body.orderID,
-      };
       const updatedOrder = await order.save();
       res.send({ message: 'Заказ оплачен', order: updatedOrder });
     } else {

@@ -45,7 +45,7 @@ const ProductListScreen = {
                     <table>
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>№</th>
                                 <th>Название</th>
                                 <th>Цена</th>
                                 <th>Категория</th>

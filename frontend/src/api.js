@@ -318,3 +318,23 @@ export const getSummary = async () => {
       return { error: err.response ? err.response.data.message : err.message };
     }
   };
+
+  export const paidOrder = async (orderId) => {
+    try {
+      const { token } = getUserInfo();
+      const response = await axios({
+        url: `${apiUrl}/api/orders/${orderId}/pay`,
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      if (response.statusText !== 'OK') {
+        throw new Error(response.data.message);
+      }
+      return response.data;
+    } catch (err) {
+      return { error: err.response ? err.response.data.message : err.message };
+    }
+  };
