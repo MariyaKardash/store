@@ -83,8 +83,12 @@ orderRouter.get(
 orderRouter.post(
   '/', isAuth,
   expressAsyncHandler(async (req, res) => {
-    const order = new Order({
+    let order;
+    if(req.body.isPaid) {
+      order = new Order({
       orderItems: req.body.orderItems,
+      isPaid: req.body.isPaid,
+      paidAt: req.body.paidAt,
       user: req.user._id,
       shipping: req.body.shipping,
       payment: req.body.payment,
@@ -93,8 +97,20 @@ orderRouter.post(
       shippingPrice: req.body.shippingPrice,
       totalPrice: req.body.totalPrice,
     });
+    } else {
+        order = new Order({
+        orderItems: req.body.orderItems,
+        user: req.user._id,
+        shipping: req.body.shipping,
+        payment: req.body.payment,
+        itemsPrice: req.body.itemsPrice,
+        taxPrice: req.body.taxPrice,
+        shippingPrice: req.body.shippingPrice,
+        totalPrice: req.body.totalPrice,
+      });
+    }
     const createdOrder = await order.save();
-    res.status(201).send({ message: 'New Order Created', order: createdOrder });
+    res.status(201).send({ message: 'Новый заказ создан', order: createdOrder });
   })
 );
 

@@ -19,19 +19,32 @@ const convertCartToOrder = () => {
         document.location.hash = '/payment';
     }
 
+    let isPaid = false, paidAt;
+    if(payment.paymentMethod === 'Картой') {
+        isPaid = true;
+        paidAt = Date.now();
+    }
+
     const itemsPrice = orderItems.reduce((a,c) => a+c.price*c.qty, 0);
     const shippingPrice = itemsPrice > 100? 0: 10;
-    const taxPrice = Math.round(0.15 * itemsPrice * 100) / 100;
+    const taxPrice = 0.01 * itemsPrice * 100 / 100;
     const totalPrice = itemsPrice + shippingPrice + taxPrice;
+    if(isPaid) {
+        return {
+        orderItems, isPaid, paidAt, shipping, payment, itemsPrice, shippingPrice, taxPrice, totalPrice,
+    }
+} else {
     return {
         orderItems, shipping, payment, itemsPrice, shippingPrice, taxPrice, totalPrice,
     }
+}
+    
 }
 
 const PlaceOrderScreen = {
     after_render: async () => {
         document.getElementById('placeorder-button').addEventListener('click', async () => {
-            const order = convertCartToOrder();
+        const order = convertCartToOrder();
         showLoading();
         const data = await createOrder(order);
         hideLoading();

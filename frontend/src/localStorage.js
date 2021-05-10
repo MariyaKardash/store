@@ -55,18 +55,40 @@ export const setShipping = ({
   localStorage.setItem('shipping', JSON.stringify({address, city, postalCode, country}));
 }
 
+export const getPayCart = () => {
+  const payCart = localStorage.getItem('payCart') ? 
+  JSON.parse(localStorage.getItem('payCart')) : 
+  {
+    number: '',
+    date: '',
+    owner: '',
+    CVV: '',
+  };
+
+  return payCart;
+}
+
+export const setPayCart = ({
+  number = '',
+  date = '',
+  owner = '',
+  CVV = '',
+}) => {
+localStorage.setItem('payCart', JSON.stringify({number, date, owner, CVV}));
+}
+
 export const getPayment = () => {
   const payment = localStorage.getItem('payment') ? 
   JSON.parse(localStorage.getItem('payment')) : 
   {
-    paymentMethod: 'paypal',
+    paymentMethod: 'Картой',
   };
 
   return payment;
 }
 
 export const setPayment = ({
-  paymentMethod = 'paypal'
+  paymentMethod = 'Картой'
 }) => {
   localStorage.setItem('payment', JSON.stringify({paymentMethod}));
 }

@@ -7,7 +7,11 @@ const PaymentScreen = {
             e.preventDefault();
             const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
             setPayment({paymentMethod});
-            document.location.hash = '/placeorder';
+            if(paymentMethod === 'Картой') {
+                document.location.hash = '/paycart';
+            } else {
+                document.location.hash = '/placeorder';
+            }
         })
     },
     render: () => {
