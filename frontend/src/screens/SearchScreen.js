@@ -1,19 +1,21 @@
 import { getProducts } from '../api';
 import Rating from '../components/rating';
+import { parseRequestURL } from '../utils';
 
-const HomeScreen = {
+const SearchScreen = {
   render: async () => {
     const products = await getProducts();
     if(products.error) {
       return `<div class="error">${products.error}</div>`;
     }
-
+    const request = parseRequestURL();
     return `
       <ul class='products'>
         ${products
     .map(
       (product) => `
-        <li>
+      ${product.name.toLowerCase().indexOf(request.id) !== -1 ? `
+      <li>
           <div class='product'>
             <a href='/#/product/${product._id}'>
               <img src='${product.image}' alt='${product.name}' />
@@ -34,10 +36,11 @@ const HomeScreen = {
           </div>
           </div>
         </li>
+        ` : ''}
         `,
     )
     .join('\n')}
       `;
   },
 };
-export default HomeScreen;
+export default SearchScreen;

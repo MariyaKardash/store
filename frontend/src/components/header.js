@@ -8,6 +8,9 @@ const Header = {
     document.getElementById('close-modal').addEventListener('click', () => {
       document.getElementById('modal').style.display = 'none';
     })
+    document.getElementById('search-icon').addEventListener('click', () => {
+      document.location.hash=`/search/${document.getElementById('search').value}`;
+    })
   },
   render: () => {
     const { name, isAdmin } = getUserInfo();
@@ -34,11 +37,11 @@ const Header = {
             </div>
             <div class="header-ref">
             <input class="search-input" id="search"/>
-            <a><i class="fas fa-search"></i></a>
+            <a><i class="fas fa-search" id="search-icon"></i></a>
             ${
               name
                 ? `<a href = '/#/profile'>${name}</a>`
-                : `                <a href="/#/signin"><i class="fas fa-user-cog" data-title="Авторизоваться"></i></a>`
+                : `<a href="/#/signin"><i class="fas fa-user-cog" data-title="Авторизоваться"></i></a>`
             }
                 <a href="/#/cart"><i class="fas fa-shopping-cart" data-title="Корзина"></i></a>
                 ${isAdmin ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`: ''}
