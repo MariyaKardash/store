@@ -1,10 +1,32 @@
 import { getUserInfo } from "../localStorage";
 
 const Header = {
+  after_render: () => {
+    document.getElementById('open-modal').addEventListener('click', () => {
+      document.getElementById('modal').style.display = 'block';
+    })
+    document.getElementById('close-modal').addEventListener('click', () => {
+      document.getElementById('modal').style.display = 'none';
+    })
+  },
   render: () => {
     const { name, isAdmin } = getUserInfo();
     return `
-            <div class='bar-menu'>
+    <div id="modal" class="modal-categories">
+    <div class="modal-header">
+    Категории
+    <i class="fas fa-times" id="close-modal"></i>
+    </div>
+      <ul class='modal-content'>
+        <li>
+          <a>Телефоны</a>
+        </li>
+        <li>
+          <a>Ноутбуки</a>
+        </li>
+      </ul>
+    </div>
+            <div id='open-modal'>
               <a><i class="fas fa-bars"></i></a>
             </div>
             <div class="brand">
@@ -20,6 +42,5 @@ const Header = {
                 ${isAdmin ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`: ''}
             </div>`;
   },
-  after_render: () => {},
 };
 export default Header;

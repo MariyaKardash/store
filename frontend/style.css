@@ -603,3 +603,54 @@ td {
     color:white;
     border: none;
 }
+
+/*Модалка со стилями*/
+
+.modal-categories {
+  position: fixed;
+  z-index: 100;
+  background-color: #fff;
+  top: 0;
+  left: 0;
+  width: 20%;
+  height: 100%;
+  border-right: 0.3rem white solid;
+  display: none;
+}
+
+.modal-header {
+  background-color: white;
+  border-bottom: 0.1rem #dbdbdb solid;
+  color: rgb(49, 141, 216);
+  height: 3rem;
+  font-size: 2rem;
+  text-align: center;
+  margin-top: 2rem
+}
+
+.modal-content {
+  margin: 0;
+  padding: 0;
+}
+
+.modal-content li a {
+  color: black;
+}
+
+.modal-content li {
+  margin: 2rem;
+}
+
+.modal-content li a:hover {
+  color: rgb(49, 141, 216);
+  cursor: pointer;
+}
+
+.fa-times {
+  color: gray;
+  position: absolute;
+  top: 1rem;
+  left: 90%;
+  font-size: 2rem;
+  cursor: pointer;
+}
