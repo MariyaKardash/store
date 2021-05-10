@@ -17,6 +17,7 @@ import ProductEditScreen from "./screens/ProductEditScreen.js";
 import OrderListScreen from "./screens/OrderListScreen.js";
 import PayCartScreen from "./screens/PayCartScreen.js";
 import SearchScreen from "./screens/SearchScreen.js";
+import FilterScreen from "./screens/FilterScreen.js";
 
 const routes = {
   "/": HomeScreen,
@@ -36,6 +37,7 @@ const routes = {
   '/productlist': ProductListScreen,
   '/orderlist': OrderListScreen,
   '/search/:id': SearchScreen,
+  '/filter/:id': FilterScreen,
 };
 
 const router = async () => {

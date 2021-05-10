@@ -22,10 +22,10 @@ const Header = {
     </div>
       <ul class='modal-content'>
         <li>
-          <a>Телефоны</a>
+          <a href="/#/filter/phones">Телефоны</a>
         </li>
         <li>
-          <a>Ноутбуки</a>
+          <a href="/#/filter/laptops">Ноутбуки</a>
         </li>
       </ul>
     </div>
