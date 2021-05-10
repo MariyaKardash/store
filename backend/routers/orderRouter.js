@@ -1,14 +1,14 @@
-import express from 'express';
-import expressAsyncHandler from 'express-async-handler';
-import Order from '../models/orderModel';
-import User from '../models/userModel';
-import Product from '../models/productModel';
-import { isAuth } from '../utils';
+import express from "express";
+import expressAsyncHandler from "express-async-handler";
+import Order from "../models/orderModel";
+import User from "../models/userModel";
+import Product from "../models/productModel";
+import { isAuth } from "../utils";
 
 const orderRouter = express.Router();
 
 orderRouter.get(
-  '/summary',
+  "/summary",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const orders = await Order.aggregate([
@@ -16,7 +16,7 @@ orderRouter.get(
         $group: {
           _id: null,
           numOrders: { $sum: 1 },
-          totalSales: { $sum: '$totalPrice' },
+          totalSales: { $sum: "$totalPrice" },
         },
       },
     ]);
@@ -31,16 +31,16 @@ orderRouter.get(
     const dailyOrders = await Order.aggregate([
       {
         $group: {
-          _id: { $dateToString: { format: '%Y-%m-%d', date: '$createdAt' } },
+          _id: { $dateToString: { format: "%Y-%m-%d", date: "$createdAt" } },
           orders: { $sum: 1 },
-          sales: { $sum: '$totalPrice' },
+          sales: { $sum: "$totalPrice" },
         },
       },
     ]);
     const productCategories = await Product.aggregate([
       {
         $group: {
-          _id: '$category',
+          _id: "$category",
           count: { $sum: 1 },
         },
       },
@@ -49,56 +49,70 @@ orderRouter.get(
   })
 );
 
-orderRouter.get('/', isAuth, expressAsyncHandler(async(req, res) => {
-  const orders = await Order.find({}).populate('user');
-  res.send(orders);
-}))
-
-orderRouter.delete('/:id', isAuth, expressAsyncHandler(async(req,res) => {
-  const order = await Order.findById(req.params.id);
-  if(order) {
-    const deletedOrder = await order.remove();
-    res.send({message:'Заказ был успешно удалён!', product:deletedOrder});
-  } else {
-    res.status(404).send({message:'Заказ не найден!'})
-  }
-}));
-
-orderRouter.get('/mine', isAuth, expressAsyncHandler(async (req,res) => {
-    const orders = await Order.find({user: req.user._id});
+orderRouter.get(
+  "/",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({}).populate("user");
     res.send(orders);
-}))
+  })
+);
+
+orderRouter.delete(
+  "/:id",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const order = await Order.findById(req.params.id);
+    if (order) {
+      const deletedOrder = await order.remove();
+      res.send({ message: "Заказ был успешно удалён!", product: deletedOrder });
+    } else {
+      res.status(404).send({ message: "Заказ не найден!" });
+    }
+  })
+);
 
 orderRouter.get(
-  '/:id', isAuth,
+  "/mine",
+  isAuth,
+  expressAsyncHandler(async (req, res) => {
+    const orders = await Order.find({ user: req.user._id });
+    res.send(orders);
+  })
+);
+
+orderRouter.get(
+  "/:id",
+  isAuth,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
     if (order) {
       res.send(order);
     } else {
-      res.status(404).send({ message: 'Order Not Found' });
+      res.status(404).send({ message: "Order Not Found" });
     }
   })
 );
 orderRouter.post(
-  '/', isAuth,
+  "/",
+  isAuth,
   expressAsyncHandler(async (req, res) => {
     let order;
-    if(req.body.isPaid) {
+    if (req.body.isPaid) {
       order = new Order({
-      orderItems: req.body.orderItems,
-      isPaid: req.body.isPaid,
-      paidAt: req.body.paidAt,
-      user: req.user._id,
-      shipping: req.body.shipping,
-      payment: req.body.payment,
-      itemsPrice: req.body.itemsPrice,
-      taxPrice: req.body.taxPrice,
-      shippingPrice: req.body.shippingPrice,
-      totalPrice: req.body.totalPrice,
-    });
+        orderItems: req.body.orderItems,
+        isPaid: req.body.isPaid,
+        paidAt: req.body.paidAt,
+        user: req.user._id,
+        shipping: req.body.shipping,
+        payment: req.body.payment,
+        itemsPrice: req.body.itemsPrice,
+        taxPrice: req.body.taxPrice,
+        shippingPrice: req.body.shippingPrice,
+        totalPrice: req.body.totalPrice,
+      });
     } else {
-        order = new Order({
+      order = new Order({
         orderItems: req.body.orderItems,
         user: req.user._id,
         shipping: req.body.shipping,
@@ -110,12 +124,14 @@ orderRouter.post(
       });
     }
     const createdOrder = await order.save();
-    res.status(201).send({ message: 'Новый заказ создан', order: createdOrder });
+    res
+      .status(201)
+      .send({ message: "Новый заказ создан", order: createdOrder });
   })
 );
 
 orderRouter.put(
-  '/:id/deliver',
+  "/:id/deliver",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
@@ -123,15 +139,15 @@ orderRouter.put(
       order.isDelivered = true;
       order.deliveredAt = Date.now();
       const updatedOrder = await order.save();
-      res.send({ message: 'Заказ доставлен', order: updatedOrder });
+      res.send({ message: "Заказ доставлен", order: updatedOrder });
     } else {
-      res.status(404).send({ message: 'Заказ не был найден' });
+      res.status(404).send({ message: "Заказ не был найден" });
     }
   })
 );
 
 orderRouter.put(
-  '/:id/pay',
+  "/:id/pay",
   isAuth,
   expressAsyncHandler(async (req, res) => {
     const order = await Order.findById(req.params.id);
@@ -139,9 +155,9 @@ orderRouter.put(
       order.isPaid = true;
       order.paidAt = Date.now();
       const updatedOrder = await order.save();
-      res.send({ message: 'Заказ оплачен', order: updatedOrder });
+      res.send({ message: "Заказ оплачен", order: updatedOrder });
     } else {
-      res.status(404).send({ message: 'Заказ не был найден' });
+      res.status(404).send({ message: "Заказ не был найден" });
     }
   })
 );

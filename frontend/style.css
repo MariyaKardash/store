@@ -49,8 +49,8 @@ input:hover {
 }
 
 select {
-    border-color: rgb(49, 141, 216);
-    border-radius: 0.5rem;
+  border-color: rgb(49, 141, 216);
+  border-radius: 0.5rem;
 }
 
 .overlay {
@@ -206,8 +206,7 @@ header a {
   font-size: 1.4rem;
 }
 
-/*Details*/
-
+/*Страница товара*/
 .content {
   padding: 1rem;
 }
@@ -224,14 +223,14 @@ header a {
   flex: 1 1 60rem;
 }
 
-.details-info{
-    margin: 0;
+.details-info {
+  margin: 0;
 }
 
-.details-action{
-    margin-top: 3rem;
-    width: 100%;
-    border-radius: 0.5rem;
+.details-action {
+  margin-top: 3rem;
+  width: 100%;
+  border-radius: 0.5rem;
 }
 
 .details-image img {
@@ -259,11 +258,10 @@ header a {
 }
 
 .details-action li {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
-/*Cart*/
-
+/*Корзина*/
 .cart {
   display: flex;
   flex-wrap: wrap;
@@ -336,7 +334,7 @@ header a {
   padding: 0.5rem;
 }
 
-/* Form */
+/* Формы */
 .form-container {
   display: flex;
   justify-content: center;
@@ -363,7 +361,7 @@ header a {
   font-size: 2.5rem;
 }
 
-/*Checkout*/
+/*Подтверждение заказа*/
 .checkout-steps {
   display: flex;
   justify-content: space-between;
@@ -383,8 +381,7 @@ header a {
   border-top-color: rgb(49, 141, 216);
 }
 
-/*Order*/
-
+/*Заказ*/
 .order {
   display: flex;
   flex-wrap: wrap;
@@ -443,8 +440,7 @@ header a {
   color: rgb(49, 141, 216);
 }
 
-/*Table*/
-
+/*Таблицы*/
 .profile {
   display: flex;
   flex-wrap: wrap;
@@ -472,13 +468,12 @@ th {
 }
 
 td {
-    text-align: center;
+  text-align: center;
   padding: 0.5rem;
   background-color: white;
 }
 
-/*Manage*/
-
+/*Управление магазином*/
 .manage {
   display: flex;
   flex-wrap: wrap;
@@ -522,7 +517,7 @@ td {
 }
 
 .manage-content button {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 .order-list button,
@@ -538,7 +533,6 @@ td {
 }
 
 /*Статистика*/
-
 .summary-items {
   display: flex;
   justify-content: space-around;
@@ -572,8 +566,7 @@ td {
   flex: 1;
 }
 
-/*Стили для иконки*/
-
+/*Стили для иконок*/
 .fas {
   font-size: 3rem;
   display: inline-block;
@@ -595,17 +588,16 @@ td {
 }
 
 .fa-angle-double-left {
-    color: rgb(49, 141, 216);
+  color: rgb(49, 141, 216);
 }
 
 .to-cart {
-    background-color: rgba(49, 141, 216, 0.7);
-    color:white;
-    border: none;
+  background-color: rgba(49, 141, 216, 0.7);
+  color: white;
+  border: none;
 }
 
-/*Модалка со стилями*/
-
+/*Категории*/
 .modal-categories {
   position: fixed;
   z-index: 100;
@@ -625,7 +617,7 @@ td {
   height: 3rem;
   font-size: 2rem;
   text-align: center;
-  margin-top: 2rem
+  margin-top: 2rem;
 }
 
 .modal-content {
@@ -655,7 +647,7 @@ td {
   cursor: pointer;
 }
 
-/*Search*/
+/*Поиск*/
 .search-input {
   height: 3rem;
   margin-right: 1rem;

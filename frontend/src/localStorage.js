@@ -1,4 +1,3 @@
-
 export const getCartItems = () => {
   const cartItems = localStorage.getItem("cartItems")
     ? JSON.parse(localStorage.getItem("cartItems"))
@@ -24,8 +23,8 @@ export const setUserInfo = ({
 };
 
 export const clearUser = () => {
-  localStorage.removeItem('userInfo');
-}
+  localStorage.removeItem("userInfo");
+};
 
 export const getUserInfo = () => {
   return localStorage.getItem("userInfo")
@@ -34,65 +33,66 @@ export const getUserInfo = () => {
 };
 
 export const getShipping = () => {
-  const shipping = localStorage.getItem('shipping') ? 
-  JSON.parse(localStorage.getItem('shipping')) : 
-  {
-    address: '',
-    city: '',
-    postalCode: '',
-    country: '',
-  };
+  const shipping = localStorage.getItem("shipping")
+    ? JSON.parse(localStorage.getItem("shipping"))
+    : {
+        address: "",
+        city: "",
+        postalCode: "",
+        country: "",
+      };
 
   return shipping;
-}
+};
 
 export const setShipping = ({
-    address = '',
-    city = '',
-    postalCode = '',
-    country = '',
+  address = "",
+  city = "",
+  postalCode = "",
+  country = "",
 }) => {
-  localStorage.setItem('shipping', JSON.stringify({address, city, postalCode, country}));
-}
+  localStorage.setItem(
+    "shipping",
+    JSON.stringify({ address, city, postalCode, country })
+  );
+};
 
 export const getPayCart = () => {
-  const payCart = localStorage.getItem('payCart') ? 
-  JSON.parse(localStorage.getItem('payCart')) : 
-  {
-    number: '',
-    date: '',
-    owner: '',
-    CVV: '',
-  };
+  const payCart = localStorage.getItem("payCart")
+    ? JSON.parse(localStorage.getItem("payCart"))
+    : {
+        number: "",
+        date: "",
+        owner: "",
+        CVV: "",
+      };
 
   return payCart;
-}
+};
 
 export const setPayCart = ({
-  number = '',
-  date = '',
-  owner = '',
-  CVV = '',
+  number = "",
+  date = "",
+  owner = "",
+  CVV = "",
 }) => {
-localStorage.setItem('payCart', JSON.stringify({number, date, owner, CVV}));
-}
+  localStorage.setItem("payCart", JSON.stringify({ number, date, owner, CVV }));
+};
 
 export const getPayment = () => {
-  const payment = localStorage.getItem('payment') ? 
-  JSON.parse(localStorage.getItem('payment')) : 
-  {
-    paymentMethod: 'Картой',
-  };
+  const payment = localStorage.getItem("payment")
+    ? JSON.parse(localStorage.getItem("payment"))
+    : {
+        paymentMethod: "Картой",
+      };
 
   return payment;
-}
+};
 
-export const setPayment = ({
-  paymentMethod = 'Картой'
-}) => {
-  localStorage.setItem('payment', JSON.stringify({paymentMethod}));
-}
+export const setPayment = ({ paymentMethod = "Картой" }) => {
+  localStorage.setItem("payment", JSON.stringify({ paymentMethod }));
+};
 
 export const cleanCart = () => {
-  localStorage.removeItem('cartItems');
-}
+  localStorage.removeItem("cartItems");
+};

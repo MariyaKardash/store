@@ -21,23 +21,23 @@ import FilterScreen from "./screens/FilterScreen.js";
 
 const routes = {
   "/": HomeScreen,
-  '/product/:id/edit':ProductEditScreen,
+  "/product/:id/edit": ProductEditScreen,
   "/product/:id": ProductScreen,
-  '/order/:id': OrderScreen,
+  "/order/:id": OrderScreen,
   "/cart/:id": CartScreen,
-  '/cart': CartScreen,
-  '/signin': SigninScreen,
-  '/register': RegisterScreen,
-  '/profile': ProfileScreen,
-  '/shipping': ShippingScreen,
-  '/payment': PaymentScreen,
-  '/paycart': PayCartScreen,
-  '/placeorder': PlaceOrderScreen,
-  '/manage': ManageScreen,
-  '/productlist': ProductListScreen,
-  '/orderlist': OrderListScreen,
-  '/search/:id': SearchScreen,
-  '/filter/:id': FilterScreen,
+  "/cart": CartScreen,
+  "/signin": SigninScreen,
+  "/register": RegisterScreen,
+  "/profile": ProfileScreen,
+  "/shipping": ShippingScreen,
+  "/payment": PaymentScreen,
+  "/paycart": PayCartScreen,
+  "/placeorder": PlaceOrderScreen,
+  "/manage": ManageScreen,
+  "/productlist": ProductListScreen,
+  "/orderlist": OrderListScreen,
+  "/search/:id": SearchScreen,
+  "/filter/:id": FilterScreen,
 };
 
 const router = async () => {
@@ -47,17 +47,15 @@ const router = async () => {
     (request.resourse ? `/${request.resourse}` : "/") +
     (request.id ? "/:id" : "") +
     (request.verb ? `/${request.verb}` : "");
-    console.log(request);
-    const screen = routes[parseUrl] ? routes[parseUrl] : ErrorScreen;
-
-    const header = document.getElementById('header-container');
-    header.innerHTML = await Header.render();
-    await Header.after_render();
-    const main = document.getElementById("main_container");
-    main.innerHTML = await screen.render();
-    if (screen.after_render) await screen.after_render();
-    hideLoading();
+  const screen = routes[parseUrl] ? routes[parseUrl] : ErrorScreen;
+  const header = document.getElementById("header-container");
+  header.innerHTML = await Header.render();
+  await Header.after_render();
+  const main = document.getElementById("main_container");
+  main.innerHTML = await screen.render();
+  if (screen.after_render) await screen.after_render();
+  hideLoading();
 };
 
 window.addEventListener("load", router);
-window.addEventListener('hashchange', router);
+window.addEventListener("hashchange", router);

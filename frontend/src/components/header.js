@@ -1,16 +1,19 @@
 import { getUserInfo } from "../localStorage";
+import { parseRequestURL } from "../utils";
 
 const Header = {
   after_render: () => {
-    document.getElementById('open-modal').addEventListener('click', () => {
-      document.getElementById('modal').style.display = 'block';
-    })
-    document.getElementById('close-modal').addEventListener('click', () => {
-      document.getElementById('modal').style.display = 'none';
-    })
-    document.getElementById('search-icon').addEventListener('click', () => {
-      document.location.hash=`/search/${document.getElementById('search').value}`;
-    })
+    document.getElementById("open-modal").addEventListener("click", () => {
+      document.getElementById("modal").style.display = "block";
+    });
+    document.getElementById("close-modal").addEventListener("click", () => {
+      document.getElementById("modal").style.display = "none";
+    });
+    document.getElementById("search-icon").addEventListener("click", () => {
+      document.location.hash = `/search/${
+        document.getElementById("search").value
+      }`;
+    });
   },
   render: () => {
     const { name, isAdmin } = getUserInfo();
@@ -44,7 +47,11 @@ const Header = {
                 : `<a href="/#/signin"><i class="fas fa-user-cog" data-title="Авторизоваться"></i></a>`
             }
                 <a href="/#/cart"><i class="fas fa-shopping-cart" data-title="Корзина"></i></a>
-                ${isAdmin ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`: ''}
+                ${
+                  isAdmin
+                    ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`
+                    : ""
+                }
             </div>`;
   },
 };
