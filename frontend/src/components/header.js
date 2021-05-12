@@ -1,5 +1,4 @@
 import { getUserInfo } from "../localStorage";
-import { parseRequestURL } from "../utils";
 
 const Header = {
   after_render: () => {
@@ -10,9 +9,13 @@ const Header = {
       document.getElementById("modal").style.display = "none";
     });
     document.getElementById("search-icon").addEventListener("click", () => {
-      document.location.hash = `/search/${
+      if(document.getElementById("search").value == '') {
+        document.location.hash = '/';
+      } else {
+              document.location.hash = `/search/${
         document.getElementById("search").value
       }`;
+      }
     });
   },
   render: () => {
@@ -39,7 +42,7 @@ const Header = {
                 <a href="/#/">Shop</a>
             </div>
             <div class="header-ref">
-            <input class="search-input" id="search"/>
+            <input class="search-input" id="search" placeholder="Поле для поиска..."/>
             <a><i class="fas fa-search" id="search-icon"></i></a>
             ${
               name
