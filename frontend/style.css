@@ -574,7 +574,8 @@ td {
 }
 .fa-user-cog:hover::after,
 .fa-shopping-cart:hover::after,
-.fa-chart-bar:hover::after {
+.fa-chart-bar:hover::after,
+.fa-sort-alpha-down:hover::after {
   content: attr(data-title);
   position: absolute;
   right: 20%;
@@ -600,7 +601,7 @@ td {
 /*Категории*/
 .modal-categories {
   position: fixed;
-  z-index: 100;
+  z-index: 101;
   background-color: #fff;
   top: 0;
   left: 0;
@@ -656,4 +657,31 @@ td {
 .header-ref {
   display: flex;
   align-items: center;
+}
+
+
+.sort-menu {
+  position: absolute;
+  z-index: 100;
+  background-color: #fff;
+  top: 5rem;
+  right: 0;
+  width: 30%;
+  height: 20%;
+  border: 0.3rem rgb(49, 141, 216) solid;
+  border-top:none;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  display: none;
+}
+
+.sort-header {
+  color: rgb(49, 141, 216);
+  text-align: center;
+  margin-bottom: 3rem;
+}
+.sort-menu select {
+  margin: 2rem;
 }

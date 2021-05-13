@@ -18,6 +18,7 @@ import OrderListScreen from "./screens/OrderListScreen.js";
 import PayCartScreen from "./screens/PayCartScreen.js";
 import SearchScreen from "./screens/SearchScreen.js";
 import FilterScreen from "./screens/FilterScreen.js";
+import SortScreen from "./screens/SortScreen.js";
 
 const routes = {
   "/": HomeScreen,
@@ -38,6 +39,8 @@ const routes = {
   "/orderlist": OrderListScreen,
   "/search/:id": SearchScreen,
   "/filter/:id": FilterScreen,
+  "/sort/:id/ascending": SortScreen,
+  "/sort/:id/descending": SortScreen,
 };
 
 const router = async () => {
@@ -47,6 +50,7 @@ const router = async () => {
     (request.resourse ? `/${request.resourse}` : "/") +
     (request.id ? "/:id" : "") +
     (request.verb ? `/${request.verb}` : "");
+    console.log(request);
   const screen = routes[parseUrl] ? routes[parseUrl] : ErrorScreen;
   const header = document.getElementById("header-container");
   header.innerHTML = await Header.render();

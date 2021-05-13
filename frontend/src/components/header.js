@@ -2,11 +2,25 @@ import { getUserInfo } from "../localStorage";
 
 const Header = {
   after_render: () => {
+    document.getElementById("sort-field").addEventListener('change', () => {
+      document.location.hash = `/sort/${
+        document.getElementById("sort-field").value}/${document.getElementById("sort-how").value}`;
+    })
+    document.getElementById("sort-how").addEventListener('change', () => {
+      document.location.hash = `/sort/${
+        document.getElementById("sort-field").value}/${document.getElementById("sort-how").value}`;
+    })
     document.getElementById("open-modal").addEventListener("click", () => {
       document.getElementById("modal").style.display = "block";
     });
     document.getElementById("close-modal").addEventListener("click", () => {
       document.getElementById("modal").style.display = "none";
+    });
+    document.getElementById("open-sort-menu").addEventListener("click", () => {
+      document.getElementById("sort-menu").style.display = "block";
+    });
+    document.getElementById("close-sort-menu").addEventListener("click", () => {
+      document.getElementById("sort-menu").style.display = "none";
     });
     document.getElementById("search-icon").addEventListener("click", () => {
       if(document.getElementById("search").value == '') {
@@ -44,6 +58,7 @@ const Header = {
             <div class="header-ref">
             <input class="search-input" id="search" placeholder="Поле для поиска..."/>
             <a><i class="fas fa-search" id="search-icon"></i></a>
+            <a><i class="fas fa-sort-alpha-down" data-title="Сортировка" id="open-sort-menu"></i></a>
             ${
               name
                 ? `<a href = '/#/profile'>${name}</a>`
@@ -55,6 +70,21 @@ const Header = {
                     ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`
                     : ""
                 }
+      <div class="sort-menu" id="sort-menu"> 
+          <div class="sort-header">Меню сортировки
+          <i class="fas fa-times" id="close-sort-menu"></i></div>
+          <div class="sort-category">
+                <select id="sort-field"> 
+                  <option value="name">По названию</option>
+                  <option value="rating">По рейтингу</option>
+                  <option value="price">По цене</option> 
+                </select>
+                <select id="sort-how"> 
+                  <option value="ascending">По возрастанию</option>
+                  <option value="descending">По убыванию</option>
+                </select>
+              </div>
+      </div>
             </div>`;
   },
 };
