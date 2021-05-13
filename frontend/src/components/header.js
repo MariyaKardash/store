@@ -1,12 +1,9 @@
+import e from "cors";
 import { getUserInfo } from "../localStorage";
 
 const Header = {
   after_render: () => {
-    document.getElementById("sort-field").addEventListener('change', () => {
-      document.location.hash = `/sort/${
-        document.getElementById("sort-field").value}/${document.getElementById("sort-how").value}`;
-    })
-    document.getElementById("sort-how").addEventListener('change', () => {
+    document.getElementById("sort-button").addEventListener('click', () => {
       document.location.hash = `/sort/${
         document.getElementById("sort-field").value}/${document.getElementById("sort-how").value}`;
     })
@@ -17,7 +14,7 @@ const Header = {
       document.getElementById("modal").style.display = "none";
     });
     document.getElementById("open-sort-menu").addEventListener("click", () => {
-      document.getElementById("sort-menu").style.display = "block";
+      document.getElementById("sort-menu").style.display = "flex";
     });
     document.getElementById("close-sort-menu").addEventListener("click", () => {
       document.getElementById("sort-menu").style.display = "none";
@@ -84,6 +81,7 @@ const Header = {
                   <option value="descending">По убыванию</option>
                 </select>
               </div>
+              <button id="sort-button">Отсортировать</button>
       </div>
             </div>`;
   },

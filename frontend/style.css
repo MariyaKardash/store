@@ -682,6 +682,7 @@ td {
   text-align: center;
   margin-bottom: 3rem;
 }
-.sort-menu select {
-  margin: 2rem;
+
+.sort-menu button {
+  margin-top: 1rem;
 }
