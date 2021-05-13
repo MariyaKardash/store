@@ -43,6 +43,7 @@ userRouter.post(
         isAdmin: signinUser.isAdmin,
         token: generateToken(signinUser),
       });
+      console.log(`Пользователь ${signinUser.name} вошёл в систему!`);
     }
   })
 );
@@ -69,6 +70,7 @@ userRouter.post(
         isAdmin: createdUser.isAdmin,
         token: generateToken(createdUser),
       });
+      console.log(`Новый пользователь ${createdUser.name} зарегистрировался в системе!`);
     }
   })
 );

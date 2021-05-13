@@ -5,6 +5,7 @@ import userRouter from "./routers/userRouter";
 import orderRouter from "./routers/orderRouter";
 import productRouter from "./routers/productRouter";
 
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
@@ -31,10 +32,10 @@ async function start() {
         }
       )
       .then(() => {
-        console.log("Связь с бд прошла успешно!");
+        console.log("Связь с базой данных прошла успешно!");
       });
-    app.listen(5000, () => {
-      console.log("Сервер запущен...");
+    app.listen(PORT, () => {
+      console.log(`Сервер запущен на порте ${PORT}...`);
     });
   } catch (error) {
     console.log(error);

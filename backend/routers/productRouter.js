@@ -41,6 +41,7 @@ productRouter.post(
     } else {
       res.status(500).send({ message: "Произошла ошибка, попробуйте снова!" });
     }
+    console.log('Был создан новый товар!');
   })
 );
 
@@ -69,6 +70,7 @@ productRouter.put(
     } else {
       res.status(404).send({ message: "Товар не найден!" });
     }
+    console.log('Товар был изменён!')
   })
 );
 
@@ -86,6 +88,7 @@ productRouter.delete(
     } else {
       res.status(404).send({ message: "Товар не найден!" });
     }
+    console.log(`Товар удалён!`)
   })
 );
 
