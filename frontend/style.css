@@ -728,3 +728,17 @@ td {
   font-size: 2.5rem;
   margin: 1rem;
 }
+
+.compare-content{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.compare-content div {
+  width: 100%;
+  margin: 1rem;
+  border-bottom: 0.1rem rgb(49, 141, 216) solid;
+  padding: 1rem;
+}

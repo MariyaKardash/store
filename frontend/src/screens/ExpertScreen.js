@@ -56,12 +56,12 @@ const ExpertScreen = {
                 image: product.image,
                 price: product.price,
                 countInStock: product.countInStock,
-                // screenResolution: product.operationSystem,
-                // operationSystem: product.operationSystem,
-                // cores: product.cores,
-                // memory: product.memory,
-                // camera: product.camera,
-                // battery: product.battery,
+                screenResolution: product.screenResolution,
+                operationSystem: product.operationSystem,
+                cores: product.cores,
+                memory: product.memory,
+                camera: product.camera,
+                battery: product.battery,
             })
         }
 
@@ -92,6 +92,32 @@ const ExpertScreen = {
                       <a href="/#/product/${item.product}">
                         ${item.name}
                       </a>
+                    </div>
+                    </div>
+                    <div class="compare-content">
+                    <div>
+                    Разрешение экрана:
+                        ${item.screenResolution}
+                    </div>
+                    <div>
+                    Операционная система:
+                        ${item.operationSystem}
+                    </div>
+                    <div>
+                    Количество ядер:
+                        ${item.cores}
+                    </div>
+                    <div>
+                    Объём памяти:
+                        ${item.memory}
+                    </div>
+                    <div>
+                    Качество камеры:
+                        ${item.camera}
+                    </div>
+                    <div>
+                    Объём батареи:
+                        ${item.battery}
                     </div>
                   </div>
                 </li>
