@@ -1,6 +1,7 @@
 import { getProduct } from "../api";
 import Rating from "../components/rating";
-import { hideLoading, parseRequestURL, showLoading } from "../utils";
+import { getCompareItems } from "../localStorage";
+import { hideLoading, parseRequestURL, showLoading, showMessage } from "../utils";
 
 const ProductScreen = {
     after_render: () => {
@@ -9,7 +10,14 @@ const ProductScreen = {
             document.location.hash = `/cart/${request.id}`
         })
         document.getElementById("compare-button").addEventListener('click', () => {
-            document.location.hash = `/expert/${request.id}`
+            console.log(getCompareItems().length);
+            if(getCompareItems().length > 1 ) {
+                console.log('hi')
+                showMessage('Слишком много товаров в сравнении! Удалите что-нибудь для продолжения!')
+                document.location.hash = `/expert/`;
+            } else {
+                document.location.hash = `/expert/${request.id}`
+            }
         })
     },
   render: async () => {

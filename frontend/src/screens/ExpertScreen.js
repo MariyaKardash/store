@@ -27,18 +27,8 @@ const removeFromCompare = (id) => {
     }
 }
 
-
-
 const ExpertScreen = {
     after_render: () => {
-        const qtySelects = document.getElementsByClassName('qty-select');
-        Array.from(qtySelects).forEach((qtySelect) => {
-          qtySelect.addEventListener('change', (e) => {
-            const item = getCompareItems().find((x) => x.product === qtySelect.id);
-            addToCompare({ ...item, qty: Number(e.target.value) }, true);
-          });
-        });
-
         const deleteButtons = document.getElementsByClassName('delete-button');
         Array.from(deleteButtons).forEach(deleteButton => {
             deleteButton.addEventListener('click', () => {
@@ -54,10 +44,8 @@ const ExpertScreen = {
                 product: product._id,
                 name: product.name,
                 image: product.image,
-                price: product.price,
-                countInStock: product.countInStock,
+                category: product.category,
                 screenResolution: product.screenResolution,
-                operationSystem: product.operationSystem,
                 cores: product.cores,
                 memory: product.memory,
                 camera: product.camera,
@@ -65,9 +53,13 @@ const ExpertScreen = {
             })
         }
 
+        let compareKeys = ['cores', 'memory', 'battery', 'camera', 'screenResolution'];
+
         const compareItems = getCompareItems();
-        return `
-        <div class="content compare">
+        if(compareItems.length < 2) {
+          return `
+          <div class="content compare">
+          <div> Мало товаров для сравнения!</div>
           <div class="compare-list">
             <ul class="compare-list-container">
               ${
@@ -100,9 +92,6 @@ const ExpertScreen = {
                         ${item.screenResolution}
                     </div>
                     <div>
-                    Операционная система:
-                        ${item.operationSystem}
-                    </div>
                     <div>
                     Количество ядер:
                         ${item.cores}
@@ -118,6 +107,153 @@ const ExpertScreen = {
                     <div>
                     Объём батареи:
                         ${item.battery}
+                    </div>
+                  </div>
+                </li>
+                `)
+                      .join('\n')
+              } 
+            </ul>
+          </div>
+        </div>`
+        }
+        let firstItem = compareItems[0];
+        let secondItem = compareItems[1];
+
+        if(firstItem.category !== secondItem.category) {
+          return `
+          <div class="content compare">
+          <div>Нельзя сравнивать товары, взятые из разных категорий!</div>
+          <div class="compare-list">
+          <ul class="compare-list-container">
+            ${
+              compareItems.length === 0
+                ? '<div>Ваш список сравнений пуст! <a href="/#/">Пополнить список</a>'
+                : compareItems
+                    .map(
+                      (item) => `
+              <li>
+              <div>
+              <button type="button" class="delete-button to-cart" id="${
+                item.product
+              }">
+              Убрать из сравнения
+              </button>
+            </div>
+                <div class="compare-image">
+                  <img src="${item.image}" alt="${item.name}" />
+                </div>
+                <div class="compare-name">
+                  <div>
+                    <a href="/#/product/${item.product}">
+                      ${item.name}
+                    </a>
+                  </div>
+                  </div>
+              </li>
+              `)
+                    .join('\n')
+            } 
+          </ul>
+      </div>`
+        }
+
+        let finalItem = {};
+        for(let key of Object.keys(firstItem)) {
+           if(secondItem[key] > firstItem[key]) {
+          finalItem[key] = secondItem[key];
+        } else {
+          finalItem[key] = firstItem[key];
+        }
+        if(key === 'screenResolution') {
+          let firstScreen = firstItem.screenResolution.split('x');
+          let secondScreen = secondItem.screenResolution.split('x');
+          if(+firstScreen[0] > +secondScreen[0]) {
+            finalItem[key] = firstItem[key];
+          } else if(+firstScreen[0] < +secondScreen[0]) {
+            finalItem[key] = secondItem[key];
+          }
+        }
+      }
+
+      let firstWeight = 0;
+      let secondWeight = 0;
+
+      for(let key of compareKeys) {
+        if(secondItem[key] === firstItem[key]) {
+          secondWeight+=1;
+          firstWeight+=1;
+        } else {
+          if(secondItem[key] === finalItem[key]) {
+            secondWeight+=1.5;
+            firstWeight+=0.5;
+          }
+          if(firstItem[key] === finalItem[key]) {
+            firstWeight+=1.5;
+            secondWeight+=0.5;
+          }
+        }
+      }
+
+      let finalWeight;
+      if(firstWeight>secondWeight) {
+        finalWeight = firstWeight;
+      } else {
+        finalWeight = secondWeight;
+      }
+      console.log(secondWeight, firstWeight)
+        return `
+        <div class="content compare">
+          <div class="compare-list">
+            <ul class="compare-list-container">
+              ${
+                compareItems.length === 0
+                  ? '<div>Ваш список сравнений пуст! <a href="/#/">Пополнить список</a>'
+                  : compareItems
+                      .map(
+                        (item) => `
+                <li>
+                <div>
+                <button type="button" class="delete-button to-cart" id="${
+                  item.product
+                }">
+                Убрать из сравнения
+                </button>
+              </div>
+                  <div class="compare-image">
+                    <img src="${item.image}" alt="${item.name}" />
+                  </div>
+                  <div class="compare-name">
+                    <div>
+                      <a href="/#/product/${item.product}">
+                        ${item.name}
+                      </a>
+                    </div>
+                    </div>
+                    <div class="compare-content">
+                    <div>
+                    Разрешение экрана:
+                        ${item.screenResolution === firstItem.screenResolution ? `<div class='success'>${item.screenResolution}</div>` : `<div class='error'>${item.screenResolution}</div>`}
+                    </div>
+                    <div>
+                    Количество ядер:
+                    ${item.cores < finalItem.cores ? `<div class='error'>${item.cores}</div>` : `<div class='success'>${item.cores}</div>`}
+                    </div>
+                    <div>
+                    Объём памяти:
+                    ${item.memory < finalItem.memory ? `<div class='error'>${item.memory} Гб</div>` : `<div class='success'>${item.memory} Гб</div>`}
+                    </div>
+                    <div>
+                    Качество камеры:
+                    ${item.camera < finalItem.camera ? `<div class='error'>${item.camera} Мб</div>` : `<div class='success'>${item.camera} Мб</div>`}
+                    </div>
+                    <div>
+                    Объём батареи:
+                    ${item.battery < finalItem.battery ? `<div class='error'>${item.battery} mAh</div>` : `<div class='success'>${item.battery} mAh</div>`}
+                    </div>
+                    <div> 
+                    ${item === firstItem ? `<div class="weight">Итоговое значение: ${firstWeight}</div>` : `<div class="weight">Итоговое значение: ${secondWeight}</div>`}
+                    ${finalWeight === firstWeight && item === firstItem ? `<div class='best success'>Данный товар лучше!</div>`:`<div></div>`}
                     </div>
                   </div>
                 </li>

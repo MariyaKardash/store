@@ -261,6 +261,10 @@ header a {
   font-size: 2rem;
 }
 
+.details-action button {
+  margin: 1rem;
+}
+
 /*Корзина*/
 .cart {
   display: flex;
@@ -691,9 +695,9 @@ td {
 
 .compare {
   display: flex;
-  align-items: flex-start;
   justify-content: center;
-  flex-direction: row;
+  flex-direction: column;
+  align-items: center;
 }
 
 .compare-list-container {
@@ -738,7 +742,14 @@ td {
 }
 .compare-content div {
   width: 100%;
+}
+.compare-content div div{
+  width: 100%;
   margin: 1rem;
   border-bottom: 0.1rem rgb(49, 141, 216) solid;
   padding: 1rem;
+}
+
+.best {
+  font-size: 2rem;
 }
