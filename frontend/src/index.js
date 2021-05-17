@@ -19,6 +19,7 @@ import PayCartScreen from "./screens/PayCartScreen.js";
 import SearchScreen from "./screens/SearchScreen.js";
 import FilterScreen from "./screens/FilterScreen.js";
 import SortScreen from "./screens/SortScreen.js";
+import ExpertScreen from "./screens/ExpertScreen.js";
 
 const routes = {
   "/": HomeScreen,
@@ -41,6 +42,8 @@ const routes = {
   "/filter/:id": FilterScreen,
   "/sort/:id/ascending": SortScreen,
   "/sort/:id/descending": SortScreen,
+  "/expert": ExpertScreen,
+  "/expert/:id": ExpertScreen,
 };
 
 const router = async () => {

@@ -59,6 +59,12 @@ productRouter.put(
       product.category = req.body.category;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
+      product.screenResolution = req.body.screenResolution;
+      product.operationSystem = req.body.operationSystem;
+      product.cores = req.body.cores;
+      product.memory = req.body.memory;
+      product.camera = req.body.camera;
+      product.battery = req.body.battery;
       const updatedProduct = await product.save();
       if (updatedProduct) {
         res.send({ message: "Товар изменён", product: updatedProduct });

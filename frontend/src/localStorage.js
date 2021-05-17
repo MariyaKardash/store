@@ -4,8 +4,20 @@ export const getCartItems = () => {
     : [];
   return cartItems;
 };
+
 export const setCartItems = (cartItems) => {
   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+};
+
+export const getCompareItems = () => {
+  const compareItems = localStorage.getItem("compareItems")
+    ? JSON.parse(localStorage.getItem("compareItems"))
+    : [];
+  return compareItems;
+};
+
+export const setCompareItems = (compareItems) => {
+  localStorage.setItem("compareItems", JSON.stringify(compareItems));
 };
 
 export const setUserInfo = ({

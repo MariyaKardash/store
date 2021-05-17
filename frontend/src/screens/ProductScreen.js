@@ -8,6 +8,9 @@ const ProductScreen = {
         document.getElementById("add-button").addEventListener('click', () => {
             document.location.hash = `/cart/${request.id}`
         })
+        document.getElementById("compare-button").addEventListener('click', () => {
+            document.location.hash = `/expert/${request.id}`
+        })
     },
   render: async () => {
     const request = parseRequestURL();
@@ -57,6 +60,7 @@ const ProductScreen = {
                         </li>
                         <li>
                             <button id="add-button" class="full-width to-cart">Добавить в корзину </button>
+                             <button id="compare-button" class="full-width to-cart">Добавить в сравнение</button>
                     </ul>
                 </div>
                 </div>
