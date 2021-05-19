@@ -753,3 +753,14 @@ td {
 .best {
   font-size: 2rem;
 }
+
+.payment-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  height: calc(100vh - 15rem);
+}
+
+.cart {
+  height: calc(100vh - 10rem);
+}
