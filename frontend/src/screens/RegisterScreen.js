@@ -34,19 +34,15 @@ const RegisterScreen = {
                     </li>
                     <li>
                         <label for="name">Имя</label>
-                        <input type="name" name="name" id="name"/>
+                        <input type="name" name="name" id="name" required/>
                     </li>
                     <li>
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email"/>
+                        <input type="email" name="email" id="email" required/>
                     </li>
                     <li>
                         <label for="password">Пароль</label>
-                        <input type="password" name="password" id="password"/>
-                    </li>
-                    <li>
-                        <label for="repassword">Введите пароль ещё раз</label>
-                        <input type="password" name="repassword" id="repassword"/>
+                        <input type="password" name="password" id="password" required/>
                     </li>
                     <li> 
                         <button type="submit" class="to-cart">Зарегистрироваться</button>

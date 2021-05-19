@@ -37,7 +37,7 @@ const SigninScreen = {
                     </li>
                     <li>
                         <label for="password">Пароль</label>
-                        <input type="password" name="password" id="password"/>
+                        <input type="password" name="password" id="password" required/>
                     </li>
                     <li> 
                         <button type="submit" class="to-cart">Войти</button>
