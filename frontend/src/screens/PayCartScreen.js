@@ -30,19 +30,19 @@ const PayCartScreen = {
                     </li>
                     <li>
                         <label for="number">Номер карты</label>
-                        <input type="number" name="number" id="number" value="${number}"/>
+                        <input type="number" name="number" id="number" minlength="16"/>
                     </li>
                     <li>
                         <label for="date">Срок действия</label>
-                        <input type="text" name="date" id="date" value="${date}"/>
+                        <input type="text" name="date" id="date"/>
                     </li>
                     <li>
                         <label for="owner">Владелец</label>
-                        <input type="text" name="owner" id="owner" value="${owner}"/>
+                        <input type="text" name="owner" id="owner"/>
                     </li>
                     <li>
                         <label for="CVV">CVV/CVC</label>
-                        <input type="number" name="CVV" id="CVV" value="${CVV}"/>
+                        <input type="number" name="CVV" id="CVV" maxlength="3"/>
                     </li>
                     <li> 
                         <button type="submit" class="to-cart">Оплатить</button>
