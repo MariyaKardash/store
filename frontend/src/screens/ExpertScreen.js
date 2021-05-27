@@ -27,8 +27,52 @@ const removeFromCompare = (id) => {
     }
 }
 
+let firstWeight = 0, secondWeight = 0;
+
 const ExpertScreen = {
     after_render: () => {
+      var textFile = null,
+      makeTextFile = function (text) {
+      var data = new Blob([text], {type: 'text/plain'});
+      if (textFile !== null) {
+        window.URL.revokeObjectURL(textFile);
+      }
+      textFile = window.URL.createObjectURL(data);
+
+      return textFile;
+    };
+
+    var download = document.getElementById('download');
+
+    download.addEventListener('click', function () {
+      var link = document.createElement('a');
+      const items = getCompareItems();
+      link.setAttribute('download', `compare(${items[0].name}_${items[1].name}).txt`);
+      link.href = makeTextFile(`
+      _______________________________________________________
+      |Название товаров  |    ${items[0].name}    ||    ${items[1].name}   |
+      |Разрешение экрана |     ${items[0].screenResolution}    ||     ${items[1].screenResolution}   |
+      |Количество ядер   |        ${items[0].cores}        ||        ${items[1].cores}       |
+      |Качество камеры   |        ${items[0].camera}       ||        ${items[1].camera}      |
+      |Объём памяти      |       ${items[0].memory}       ||       ${items[1].memory}      |
+      |Объём батареи     |       ${items[0].battery}      ||       ${items[1].battery}     |
+      _______________________________________________________
+      
+      Итоговые значения:
+      ${items[0].name}: ${firstWeight}
+      ${items[1].name}: ${secondWeight}
+
+      
+      ${firstWeight > secondWeight ? `${items[0].name} лучше!` : `${items[1].name} лучше!`}`);
+      document.body.appendChild(link);
+
+      window.requestAnimationFrame(function () {
+        var event = new MouseEvent('click');
+        link.dispatchEvent(event);
+        document.body.removeChild(link);
+      });
+
+  }, false);
         const deleteButtons = document.getElementsByClassName('delete-button');
         Array.from(deleteButtons).forEach(deleteButton => {
             deleteButton.addEventListener('click', () => {
@@ -158,7 +202,10 @@ const ExpertScreen = {
       </div>`
         }
 
+        firstWeight = 0;
+        secondWeight = 0;
         let finalItem = {};
+
         for(let key of Object.keys(firstItem)) {
            if(secondItem[key] > firstItem[key]) {
           finalItem[key] = secondItem[key];
@@ -175,9 +222,6 @@ const ExpertScreen = {
           }
         }
       }
-
-      let firstWeight = 0;
-      let secondWeight = 0;
 
       for(let key of compareKeys) {
         if(secondItem[key] === firstItem[key]) {
@@ -201,7 +245,6 @@ const ExpertScreen = {
       } else {
         finalWeight = secondWeight;
       }
-      console.log(secondWeight, firstWeight)
         return `
         <div class="content compare">
           <div class="compare-list">
@@ -233,7 +276,7 @@ const ExpertScreen = {
                     <div class="compare-content">
                     <div>
                     Разрешение экрана:
-                        ${item.screenResolution === firstItem.screenResolution ? `<div class='success'>${item.screenResolution}</div>` : `<div class='error'>${item.screenResolution}</div>`}
+                        ${item.screenResolution === finalItem.screenResolution ? `<div class='success'>${item.screenResolution}</div>` : `<div class='error'>${item.screenResolution}</div>`}
                     </div>
                     <div>
                     Количество ядер:
@@ -253,7 +296,8 @@ const ExpertScreen = {
                     </div>
                     <div> 
                     ${item === firstItem ? `<div class="weight">Итоговое значение: ${firstWeight}</div>` : `<div class="weight">Итоговое значение: ${secondWeight}</div>`}
-                    ${finalWeight === firstWeight && item === firstItem ? `<div class='best success'>Данный товар лучше!</div>`:`<div></div>`}
+                    ${finalWeight === firstWeight && item === firstItem ? `<div class='best success'>Данный товар лучше!</div>`:``}
+                    ${finalWeight === secondWeight && item === secondItem ? `<div class='best success'>Данный товар лучше!</div>`:`<div></div>`}
                     </div>
                   </div>
                 </li>
@@ -261,6 +305,7 @@ const ExpertScreen = {
                       .join('\n')
               } 
             </ul>
+            <button id="download" class="download to-cart">Скачать отчёт</button>
           </div>
         </div>
         `;

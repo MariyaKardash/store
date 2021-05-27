@@ -42,7 +42,7 @@ const PayCartScreen = {
                     </li>
                     <li>
                         <label for="CVV">CVV/CVC</label>
-                        <input type="text" name="CVV" pattern="[0-9]{3}" id="CVV" value="${CVV}" required/>
+                        <input type="password" name="CVV" pattern="[0-9]{3}" id="CVV" value="${CVV}" required/>
                     </li>
                     <li> 
                         <button type="submit" class="to-cart">Оплатить</button>

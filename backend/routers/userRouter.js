@@ -43,7 +43,7 @@ userRouter.post(
         isAdmin: signinUser.isAdmin,
         token: generateToken(signinUser),
       });
-      console.log(`Пользователь ${signinUser.name} вошёл в систему!`);
+      console.log(`Пользователь ${signinUser.name} вошёл в систему!  IP пользователя: 127.0.0.1`);
     }
   })
 );

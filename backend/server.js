@@ -35,7 +35,7 @@ async function start() {
         console.log("Связь с базой данных прошла успешно!");
       });
     app.listen(PORT, () => {
-      console.log(`Сервер запущен на порте ${PORT}...`);
+      console.log(`Сервер запущен на порте http://localhost:${PORT}...`);
     });
   } catch (error) {
     console.log(error);

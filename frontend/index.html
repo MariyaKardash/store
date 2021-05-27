@@ -23,7 +23,6 @@
     <title>Shop</title>
   </head>
   <body>
-    <template id="template">
       <div class="overlay" id="loading-overlay">Загрузка...</div>
     <div class="overlay" id="message-overlay"></div>
     <div class="grid-container">
@@ -31,12 +30,6 @@
       <main id="main_container"></main>
       <footer>Shop @2021</footer>
     </div>
-    </template>
-    <script>
-      let elem = document.createElement('div');
-      elem.append(template.content.cloneNode(true));
-      document.body.append(elem);
-    </script>
     <script src="main.js"></script>
   </body>
 </html>

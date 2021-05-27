@@ -67,7 +67,7 @@ const Header = {
                     ? `<a href="/#/manage"><i class="fas fa-chart-bar" data-title="Управление магазином"></i></a>`
                     : ""
                 }
-                  <a href="/#/expert">Сравнение</a>
+                  <a href="/#/expert"><i class="fas fa-greater-than-equal" data-title="Сравнение товаров"></i></a>
       <div class="sort-menu" id="sort-menu"> 
           <div class="sort-header">Меню сортировки
           <i class="fas fa-times" id="close-sort-menu"></i></div>

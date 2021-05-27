@@ -579,7 +579,8 @@ td {
 .fa-user-cog:hover::after,
 .fa-shopping-cart:hover::after,
 .fa-chart-bar:hover::after,
-.fa-sort-alpha-down:hover::after {
+.fa-sort-alpha-down:hover::after, 
+.fa-greater-than-equal:hover::after {
   content: attr(data-title);
   position: absolute;
   right: 20%;
@@ -758,9 +759,12 @@ td {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  height: calc(100vh - 15rem);
 }
 
-.cart {
-  height: calc(100vh - 10rem);
+.compare-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
 }

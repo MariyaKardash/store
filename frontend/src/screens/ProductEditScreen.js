@@ -17,6 +17,12 @@ const ProductEditScreen = {
           category: document.getElementById('category').value,
           countInStock: document.getElementById('countInStock').value,
           description: document.getElementById('description').value,
+          operationSystem: document.getElementById('operationSystem').value,
+          screenResolution: document.getElementById('screenResolution').value,
+          cores: document.getElementById('cores').value,
+          camera: document.getElementById('camera').value,
+          memory: document.getElementById('memory').value,
+          battery: document.getElementById('battery').value,
             });
             hideLoading();
             if(data.error) {
@@ -42,7 +48,7 @@ const ProductEditScreen = {
                         </li>
                         <li>
                             <label for='name'>Название</label>
-                            <input type="text" name="name" pattern="[A-Za-zА-Яа-яЁё]{3,}" value="${product.name}" id='name' required/>
+                            <input type="text" name="name" value="${product.name}" id='name' required/>
                         </li>
                         <li>
                             <label for='price'>Цена</label>
@@ -67,6 +73,30 @@ const ProductEditScreen = {
                         <li>
                             <label for='description'>Описание</label>
                             <input type="text" name="description" value="${product.description}" id='description' required/>
+                        </li>
+                        <li>
+                            <label for='operationSystem'>Операционная система</label>
+                            <input type="text" name="operationSystem" pattern="[A-Za-z]{1,}" value="${product.operationSystem}" id='operationSystem' required/>
+                        </li>
+                        <li>
+                            <label for='screenResolution'>Разрешение экрана</label>
+                            <input type="text" name="screenResolution" pattern="[0-9]{1,}x[0-9]{1,}" value="${product.screenResolution}" id='screenResolution' required/>
+                        </li>
+                        <li>
+                            <label for='cores'>Количество ядер</label>
+                            <input type="text" name="cores" pattern="[0-9]{1,}" value="${product.cores}" id='cores' required/>
+                        </li>
+                        <li>
+                            <label for='camera'>Разрешение камеры</label>
+                            <input type="text" name="camera" pattern="[0-9]{1,}" value="${product.camera}" id='camera' required/>
+                        </li>
+                        <li>
+                            <label for='memory'>Объём памяти</label>
+                            <input type="text" name="memory" pattern="[0-9]{1,}" value="${product.memory}" id='memory' required/>
+                        </li>
+                        <li>
+                            <label for='battery'>Объём батареи</label>
+                            <input type="text" name="battery" pattern="[0-9]{1,}" value="${product.battery}" id='battery' required/>
                         </li>
                         <li>
                             <button type="submit" class="to-cart">Изменить</button>
